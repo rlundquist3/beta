@@ -45,11 +45,6 @@ export const MainViews = (props, context) => (
            <ContentBlock inner>
              I'm looking for guidebook <i>x</i>...you got it, bro?
            </ContentBlock>
-
-           <ContentBlockTitle>Navigation</ContentBlockTitle>
-           <List>
-             <ListItem link="/about/" title="About"></ListItem>
-           </List>
         </Page>
       </Pages>
     </View>
@@ -73,7 +68,8 @@ const RightPanel = (props, context) => (
 					<List>
 						<ListItem link="/profile/" title="Profile"></ListItem>
 						<ListItem link="/account/" title="Account"></ListItem>
-            <ListItem link="/logout/" title="Log Out"></ListItem>
+            <ListButton id='log-in-popup-btn' openPopup='#login-screen' title="Log In"></ListButton>
+            <ListButton link="/logout/" title="Log Out"></ListButton>
 					</List>
 
 				</Page>

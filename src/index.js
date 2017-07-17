@@ -77,10 +77,12 @@ firebase.auth().onAuthStateChanged(user => {
     console.log('user logged in');
     console.log(user)
     $('#logout-btn').removeClass('hidden')
+    $('#log-in-popup-btn').addClass('hidden')
     document.getElementById('panel-username').setTitle(user.email);
   } else {
     console.log('not logged in');
     $('#logout-btn').addClass('hidden')
+    $('#log-in-popup-btn').removeClass('hidden')
   }
 });
 

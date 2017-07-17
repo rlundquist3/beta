@@ -11,7 +11,7 @@ export class Profile extends Component {
     this.state = {
       name: 'Lrrrr',
       email: 'lrrr@omicronpersei8.planet',
-      img_url: '',
+      img_url: 'https://cdn.meme.am/cache/images/folder716/600x600/17330716/lrrrr.jpg',
       sport: '5.18+',
       trad: '5.17+',
       boulder: 'V22',
