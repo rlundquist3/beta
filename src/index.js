@@ -27,6 +27,8 @@ var config = {
   };
 firebase.initializeApp(config);
 
+const rootRef = firebase.database().ref();
+
 ReactDOM.render(
   <App />,
   document.getElementById('root')
@@ -64,7 +66,7 @@ $('#sign-up-btn').on('click', function() {
   promise.catch(e => console.log(e.message));
 });
 
-$('#log-out-btn').on('click', function() {
+$('#logout-btn').on('click', function() {
   console.log('logging out');
 
   firebase.auth().signOut();
@@ -74,10 +76,26 @@ firebase.auth().onAuthStateChanged(user => {
   if (user) {
     console.log('user logged in');
     console.log(user)
-    $('#log-out-btn').removeClass('hidden')
+    $('#logout-btn').removeClass('hidden')
     document.getElementById('panel-username').setTitle(user.email);
   } else {
     console.log('not logged in');
-    $('#log-out-btn').addClass('hidden')
+    $('#logout-btn').addClass('hidden')
   }
+});
+
+$('#profile-submit-btn').on('click', function() {
+  const userRef = rootRef.child('users').child(firebase.auth().currentUser.uid);
+
+  const profileData = {
+    name: (document.getElementById('edit-name').firstChild.value != '' ? document.getElementById('edit-name').firstChild.value : null),
+    location: (document.getElementById('edit-location').firstChild.value != '' ? document.getElementById('edit-location').firstChild.value : null),
+    home_crag: (document.getElementById('edit-crag').firstChild.value != '' ? document.getElementById('edit-crag').firstChild.value : null),
+    sport: (document.getElementById('edit-sport').firstChild.value != '' ? document.getElementById('edit-sport').firstChild.value : null),
+    trad: (document.getElementById('edit-trad').firstChild.value != '' ? document.getElementById('edit-trad').firstChild.value : null),
+    boulder: (document.getElementById('edit-boulder').firstChild.value != '' ? document.getElementById('edit-boulder').firstChild.value : null),
+    //TODO: edit picture
+  }
+
+  userRef.update(profileData);
 });
