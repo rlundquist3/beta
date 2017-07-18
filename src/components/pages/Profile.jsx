@@ -44,7 +44,7 @@ export class Profile extends Component {
         <Navbar title="Profile" backLink="Back" sliding />
         <ContentBlock inner>
           <img src={this.state.img_url} alt='photo' height='200' width='200'/>
-          <p>{this.state.fname}</p>
+          <p><b>{this.state.fname}</b> {this.state.lname}</p>
           <p>{this.state.location}</p>
           <p>Home Crag: {this.state.home_crag}</p>
           <p>Sport: {this.state.sport}</p>

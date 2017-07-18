@@ -7,7 +7,6 @@ import {
 	LoginScreen, LoginScreenTitle, ListButton, ListLabel, FormLabel, FormInput, Dom7
 } from 'framework7-react';
 import * as firebase from 'firebase';
-import {Login} from './popups/Login';
 import {UserCardScroller} from './content/UserCardScroller';
 
 import {getUsers} from '../index'
@@ -51,7 +50,6 @@ export const MainViews = (props, context) => (
         </Page>
       </Pages>
     </View>
-    <Login />
     <RightPanel />
   </Views>
 );
@@ -72,7 +70,7 @@ const RightPanel = (props, context) => (
 						<ListItem link="/account/" title="Account"></ListItem>
           </List>
           <List>
-            <ListButton id='log-in-popup-btn' openPopup='#login-screen' title="Log In"></ListButton>
+            <ListButton link='/login/' title='Log In'></ListButton>
             <ListButton link="/logout/" title="Log Out"></ListButton>
 					</List>
 

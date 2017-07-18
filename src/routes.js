@@ -4,6 +4,7 @@ import {Profile} from './components/pages/Profile';
 import {EditProfile} from './components/pages/EditProfile';
 import {Account} from './components/pages/Account';
 import {Logout} from './components/pages/Logout';
+import {Login} from './components/pages/Login';
 
 export const routes = [{
   path: '/about/',
@@ -23,4 +24,7 @@ export const routes = [{
 }, {
   path: '/logout/',
   component: Logout
+}, {
+  path: '/login/',
+  component: Login
 }];

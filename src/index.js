@@ -40,12 +40,8 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-$('#log-in-btn').on('click', function() {
-  console.log('attempting login');
-
+export const login = (email, pass) => {
   const auth = firebase.auth();
-  const email = document.getElementById('log-in-email').firstChild.value
-  const pass = document.getElementById('log-in-pass').firstChild.value
   const promise = auth.signInWithEmailAndPassword(email, pass);
   promise.catch(e => console.log(e.message));
 
@@ -59,24 +55,17 @@ $('#log-in-btn').on('click', function() {
   //   var email = error.email;
   //   var credential = error.credential;
   // });
-});
+}
 
-$('#sign-up-btn').on('click', function() {
-  console.log('attempting sign up');
-
+export const signup = (email, pass) => {
   const auth = firebase.auth();
-  const email = document.getElementById('log-in-email').firstChild.value
-  const pass = document.getElementById('log-in-pass').firstChild.value
-  console.log(email);
   const promise = auth.createUserWithEmailAndPassword(email, pass);
   promise.catch(e => console.log(e.message));
-});
+}
 
-$('#logout-btn').on('click', function() {
-  console.log('logging out');
-
+export const logout = () => {
   firebase.auth().signOut();
-});
+}
 
 firebase.auth().onAuthStateChanged(user => {
   if (user) {

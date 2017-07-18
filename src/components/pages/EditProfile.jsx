@@ -99,7 +99,7 @@ export class EditProfile extends Component {
 					</ListItem>
 				</List>
 
-        <Button id='profile-submit-btn' onClick={() => this.submitBtnClicked() } back>submit</Button>
+        <Button id='profile-submit-btn' onClick={() => this.submitBtnClicked()} back>submit</Button>
 			</Page>
     );
   }
