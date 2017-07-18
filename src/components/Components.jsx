@@ -9,6 +9,9 @@ import {
 import * as firebase from 'firebase';
 import {Login} from './popups/Login';
 import {EditProfile} from './popups/EditProfile';
+import {UserCardScroller} from './content/UserCardScroller';
+
+import {getUsers} from '../index'
 
 export const MainViews = (props, context) => (
   <Views>
@@ -41,9 +44,10 @@ export const MainViews = (props, context) => (
            <ContentBlock inner>
              Cool map shit!
            </ContentBlock>
+           <UserCardScroller uids={getUsers(10)}/>
            <ContentBlockTitle>Find a Guidebook</ContentBlockTitle>
            <ContentBlock inner>
-             I'm looking for guidebook <i>x</i>...you got it, bro?
+             I'm tryna find guidebook <i>x</i>...you got it, bro?
            </ContentBlock>
         </Page>
       </Pages>
@@ -68,6 +72,8 @@ const RightPanel = (props, context) => (
 					<List>
 						<ListItem link="/profile/" title="Profile"></ListItem>
 						<ListItem link="/account/" title="Account"></ListItem>
+          </List>
+          <List>
             <ListButton id='log-in-popup-btn' openPopup='#login-screen' title="Log In"></ListButton>
             <ListButton link="/logout/" title="Log Out"></ListButton>
 					</List>

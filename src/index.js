@@ -29,6 +29,11 @@ firebase.initializeApp(config);
 
 const rootRef = firebase.database().ref();
 
+export const getUsers = (num) => {
+  const userRef = rootRef.child('users').limitToFirst(num);
+  return userRef;
+};
+
 ReactDOM.render(
   <App />,
   document.getElementById('root')
@@ -90,7 +95,8 @@ $('#profile-submit-btn').on('click', function() {
   const userRef = rootRef.child('users').child(firebase.auth().currentUser.uid);
 
   const profileData = {
-    name: (document.getElementById('edit-name').firstChild.value != '' ? document.getElementById('edit-name').firstChild.value : null),
+    fname: (document.getElementById('edit-fname').firstChild.value != '' ? document.getElementById('edit-fname').firstChild.value : null),
+    lname: (document.getElementById('edit-lname').firstChild.value != '' ? document.getElementById('edit-lname').firstChild.value : null),
     location: (document.getElementById('edit-location').firstChild.value != '' ? document.getElementById('edit-location').firstChild.value : null),
     home_crag: (document.getElementById('edit-crag').firstChild.value != '' ? document.getElementById('edit-crag').firstChild.value : null),
     sport: (document.getElementById('edit-sport').firstChild.value != '' ? document.getElementById('edit-sport').firstChild.value : null),

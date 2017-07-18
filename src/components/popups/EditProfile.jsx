@@ -13,8 +13,12 @@ export const EditProfile = () => (
 					<LoginScreenTitle>Edit Profile</LoginScreenTitle>
 					<List form>
 						<ListItem>
-							<FormLabel>name</FormLabel>
-							<FormInput id='edit-name' name="name" placeholder="Lrrr" type="text" />
+							<FormLabel>fname</FormLabel>
+							<FormInput id='edit-fname' name="fname" placeholder="Lrrrr" type="text" />
+						</ListItem>
+            <ListItem>
+							<FormLabel>lname</FormLabel>
+							<FormInput id='edit-lname' name="lname" placeholder="Ruler of the Planet Omicron Persei 8" type="text" />
 						</ListItem>
 						<ListItem>
 							<FormLabel>location</FormLabel>
