@@ -8,7 +8,6 @@ import {
 } from 'framework7-react';
 import * as firebase from 'firebase';
 import {Login} from './popups/Login';
-import {EditProfile} from './popups/EditProfile';
 import {UserCardScroller} from './content/UserCardScroller';
 
 import {getUsers} from '../index'
@@ -53,7 +52,6 @@ export const MainViews = (props, context) => (
       </Pages>
     </View>
     <Login />
-    <EditProfile />
     <RightPanel />
   </Views>
 );

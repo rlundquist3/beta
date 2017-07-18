@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Page, ContentBlock, Navbar, Button} from 'framework7-react';
+import {Page, ContentBlock, Navbar, Button, ListButton} from 'framework7-react';
 import * as firebase from 'firebase';
 
 export class Profile extends Component {
@@ -50,7 +50,7 @@ export class Profile extends Component {
           <p>Sport: {this.state.sport}</p>
           <p>Trad: {this.state.trad}</p>
           <p>Boulder: {this.state.boulder}</p>
-        	<Button openPopup='#edit-profile-popup'>edit</Button>
+        	<Button href="/editprofile/">Edit Info</Button>
         </ContentBlock>
       </Page>
     );
