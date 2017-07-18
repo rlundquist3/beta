@@ -20,13 +20,10 @@ export class UserCard extends Component {
   }
 
   componentDidMount() {
-
+    
     const userRef = firebase.database().ref('users').child(this.props.uid);
 
-    console.log('setting state for: ' + this.props.uid);
     userRef.on('value', snap => {
-      console.log('state before '); console.log(this.state);
-      console.log(snap.val());
       this.setState({
         fname: snap.child('fname').val(),
         lname: snap.child('lname').val(),
@@ -37,7 +34,6 @@ export class UserCard extends Component {
         home_crag: snap.child('home_crag').val(),
         location: snap.child('location').val()
       })
-      console.log('state after '); console.log(this.state);
     });
   }
 

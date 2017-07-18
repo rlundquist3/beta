@@ -2,22 +2,20 @@ import React, {Component} from 'react';
 import {Page, ContentBlock, Navbar, Button} from 'framework7-react';
 import * as firebase from 'firebase';
 
-
-
 export class Profile extends Component {
   constructor(props, context) {
     super(props, context);
 
     this.state = {
-      fname: 'Lrrrr',
+      fname: 'dirtbag jim',
       lname: '',
-      email: 'lrrrr@omicronpersei8.planet',
-      img_url: 'https://cdn.meme.am/cache/images/folder716/600x600/17330716/lrrrr.jpg',
-      sport: '5.18+',
-      trad: '5.17+',
-      boulder: 'V22',
-      home_crag: 'Omicron',
-      location: 'Omicron Persei 8'
+      email: '',
+      img_url:'',
+      sport: '',
+      trad: '',
+      boulder: '',
+      home_crag: '',
+      location: 'wherever the van is'
     }
   }
 

@@ -28,6 +28,7 @@ var config = {
 firebase.initializeApp(config);
 
 const rootRef = firebase.database().ref();
+const storageRef = firebase.storage().ref();
 
 export const getUsers = (num) => {
   const userRef = rootRef.child('users').limitToFirst(num);
@@ -95,15 +96,72 @@ $('#profile-submit-btn').on('click', function() {
   const userRef = rootRef.child('users').child(firebase.auth().currentUser.uid);
 
   const profileData = {
-    fname: (document.getElementById('edit-fname').firstChild.value != '' ? document.getElementById('edit-fname').firstChild.value : null),
-    lname: (document.getElementById('edit-lname').firstChild.value != '' ? document.getElementById('edit-lname').firstChild.value : null),
-    location: (document.getElementById('edit-location').firstChild.value != '' ? document.getElementById('edit-location').firstChild.value : null),
-    home_crag: (document.getElementById('edit-crag').firstChild.value != '' ? document.getElementById('edit-crag').firstChild.value : null),
-    sport: (document.getElementById('edit-sport').firstChild.value != '' ? document.getElementById('edit-sport').firstChild.value : null),
-    trad: (document.getElementById('edit-trad').firstChild.value != '' ? document.getElementById('edit-trad').firstChild.value : null),
-    boulder: (document.getElementById('edit-boulder').firstChild.value != '' ? document.getElementById('edit-boulder').firstChild.value : null),
-    //TODO: edit picture
+    fname: document.getElementById('edit-fname').firstChild.value,
+    lname: document.getElementById('edit-lname').firstChild.value,
+    location: document.getElementById('edit-location').firstChild.value,
+    home_crag: document.getElementById('edit-crag').firstChild.value,
+    sport: document.getElementById('edit-sport').firstChild.value,
+    trad: document.getElementById('edit-trad').firstChild.value,
+    boulder: document.getElementById('edit-boulder').firstChild.value,
+    // fname: (document.getElementById('edit-fname').firstChild.value != '' ? document.getElementById('edit-fname').firstChild.value : null),
+    // lname: (document.getElementById('edit-lname').firstChild.value != '' ? document.getElementById('edit-lname').firstChild.value : null),
+    // location: (document.getElementById('edit-location').firstChild.value != '' ? document.getElementById('edit-location').firstChild.value : null),
+    // home_crag: (document.getElementById('edit-crag').firstChild.value != '' ? document.getElementById('edit-crag').firstChild.value : null),
+    // sport: (document.getElementById('edit-sport').firstChild.value != '' ? document.getElementById('edit-sport').firstChild.value : null),
+    // trad: (document.getElementById('edit-trad').firstChild.value != '' ? document.getElementById('edit-trad').firstChild.value : null),
+    // boulder: (document.getElementById('edit-boulder').firstChild.value != '' ? document.getElementById('edit-boulder').firstChild.value : null),
   }
 
   userRef.update(profileData);
+
+  //TODO: edit picture
+  // File or Blob named mountains.jpg
+  var file = document.getElementById('edit-picture').firstChild.files[0]
+
+  // Create the file metadata
+  var metadata = {
+    contentType: 'image/jpeg'
+  };
+
+  // Upload file and metadata to the object 'images/mountains.jpg'
+  var uploadTask = storageRef.child('images/' + file.name).put(file, metadata);
+
+  // Listen for state changes, errors, and completion of the upload.
+  uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+    function(snapshot) {
+      // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+      var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      console.log('Upload is ' + progress + '% done');
+      switch (snapshot.state) {
+        case firebase.storage.TaskState.PAUSED: // or 'paused'
+          console.log('Upload is paused');
+          break;
+        case firebase.storage.TaskState.RUNNING: // or 'running'
+          console.log('Upload is running');
+          break;
+      }
+    }, function(error) {
+
+      // A full list of error codes is available at
+      // https://firebase.google.com/docs/storage/web/handle-errors
+      switch (error.code) {
+        case 'storage/unauthorized':
+          // User doesn't have permission to access the object
+          break;
+
+        case 'storage/canceled':
+          // User canceled the upload
+          break;
+
+        case 'storage/unknown':
+          // Unknown error occurred, inspect error.serverResponse
+          break;
+      }
+    }, function() {
+      // Upload completed successfully, now we can get the download URL
+      var img_url = uploadTask.snapshot.downloadURL;
+      userRef.update({
+        img_url: img_url
+      });
+    });
 });

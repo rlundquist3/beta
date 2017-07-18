@@ -28,11 +28,9 @@ export class UserCardScroller extends Component {
     const usersRef = firebase.database().ref('users');
 
     usersRef.on('value', snap => {
-      console.log('state before '); console.log(this.state);
       this.setState({
         users: snap.val()
       });
-      console.log('state after '); console.log(this.state);
     });
   }
 
