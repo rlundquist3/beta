@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Page, ContentBlock, Navbar, Button, List, Link, Card, CardHeader, ContentContent, CardFooter} from 'framework7-react';
+import {Page, ContentBlock, Navbar, Button, List, Link, Card, CardHeader, ContentContent, CardFooter, Swiper, SwiperSlide} from 'framework7-react';
 import * as firebase from 'firebase';
 import {UserCard} from './UserCard';
 
@@ -36,11 +36,13 @@ export class UserCardScroller extends Component {
 
   render () {
     return (
-      <List>
+      <Swiper nextButton prevButton params={{speed:500, slidesPerView: 3, spaceBetween: 10}}>
         {Object.keys(this.state.users).map(key =>
-          <UserCard uid={key} />
+          <SwiperSlide>
+            <UserCard uid={key} />
+          </SwiperSlide>
         )}
-      </List>
+      </Swiper>
     );
   }
 };
