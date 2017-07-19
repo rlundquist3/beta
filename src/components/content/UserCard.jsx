@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Page, ContentBlock, Navbar, Button, List, Link, Card, CardHeader, CardContent, CardFooter} from 'framework7-react';
 import * as firebase from 'firebase';
 
+import {climbWithRequest} from '../../data/requests';
+
 export class UserCard extends Component {
   constructor(props, context) {
     super(props, context);
@@ -20,7 +22,7 @@ export class UserCard extends Component {
   }
 
   componentDidMount() {
-    
+
     const userRef = firebase.database().ref('users').child(this.props.uid);
 
     userRef.on('value', snap => {
@@ -37,6 +39,12 @@ export class UserCard extends Component {
     });
   }
 
+  climbWithBtnClicked() {
+    const req = climbWithRequest(firebase.auth().currentUser.uid, this.props.uid);
+
+    console.log(req.toJSON());
+  }
+
   render () {
     return (
       <Card>
@@ -46,7 +54,7 @@ export class UserCard extends Component {
           <p>{this.state.location}</p>
         </CardContent>
         <CardFooter>
-          <Link>Connect</Link>
+          <Button onClick={() => this.climbWithBtnClicked()} back>Tryna Climb?</Button>
         </CardFooter>
       </Card>
     );

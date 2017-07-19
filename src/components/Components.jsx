@@ -45,7 +45,7 @@ export const MainViews = (props, context) => (
            <UserCardScroller uids={getUsers(10)}/>
            <ContentBlockTitle>Find a Guidebook</ContentBlockTitle>
            <ContentBlock inner>
-             I'm tryna find guidebook <i>x</i>...you got it, bro?
+             I'm tryna find a guidebook for Mars...you got it, bro?
            </ContentBlock>
         </Page>
       </Pages>

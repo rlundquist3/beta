@@ -27,7 +27,7 @@ var config = {
   };
 firebase.initializeApp(config);
 
-const rootRef = firebase.database().ref();
+export const rootRef = firebase.database().ref();
 const storageRef = firebase.storage().ref();
 
 export const getUsers = (num) => {
