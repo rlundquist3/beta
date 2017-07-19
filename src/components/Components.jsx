@@ -28,9 +28,10 @@ export const MainViews = (props, context) => (
       <Pages>
         <Page>
           {context.framework7AppContext.theme.material ?
-            <Navbar title="Beta">
+            <Navbar title='&#946;'>
               <NavRight>
-                <Link icon="icon-bars" openPanel="right"></Link>
+                <Link ><i className='material-icons'>notifications</i></Link>
+                <Link openPanel="right"><i className='material-icons'>more_vert</i></Link>
               </NavRight>
             </Navbar>
            : null}
@@ -66,8 +67,8 @@ const RightPanel = (props, context) => (
 				<Page>
           {context.framework7AppContext.theme.material ? <Navbar id='panel-username' title=''></Navbar> : null}
 					<List>
-						<ListItem link="/profile/" title="Profile"></ListItem>
-						<ListItem link="/account/" title="Account"></ListItem>
+						<ListItem link="/profile/"><i className='material-icons'>face</i>Profile</ListItem>
+						<ListItem link="/account/"><i className='material-icons'>settings</i>Account</ListItem>
           </List>
           <List>
             <ListButton link='/login/' title='Log In'></ListButton>
